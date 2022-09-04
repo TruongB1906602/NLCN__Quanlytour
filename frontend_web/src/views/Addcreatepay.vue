@@ -9,9 +9,9 @@
         return {
              toasts:{
                   title:"Success",
-                  msg:"Thêm sản phẩm thành công",
-                  type:"success",
-                  duration:2000
+                  msg:"Thêm khách hàng thành công",
+                  type:"Success",
+                  duration:3000
                   },
         }
       },
@@ -30,13 +30,13 @@
                     this.toastjs();
                     setTimeout(()=>{
                       location.reload();
-                    },2000);
+                    },1000);
                 }catch(error) {
                     console.log(error);
                         this.toasts.title = "Warning",
                         this.toasts.msg="Tài khoản không phải ADMIN",
                         this.toasts.type = "warn",
-                        this.toasts.duration=2000
+                        this.toasts.duration=1000
                         this.toastjs();
                     }
                 },  
@@ -52,7 +52,7 @@
             <div class="pays"> 
             
                 <Paymentform
-                :pay="{}"	
+                    :pay="{}"	
                     @submit:pay="addcreatepay"
                     :resetAfterSubmit="false"
                 />

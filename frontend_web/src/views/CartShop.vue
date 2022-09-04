@@ -52,8 +52,7 @@ export default{
           this.toasts.msg = "Đã cập nhật",
           this.toasts.type = "success",
           this.toasts.duration=100,
-         
-            this.$router.push("/addpay")
+          this.$router.push("/addpay")
         
        
           

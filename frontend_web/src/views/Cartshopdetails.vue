@@ -77,66 +77,55 @@ export default{
 }
 </script>
 <template>
+  <div>
+      
   <toastsVue></toastsVue>
  
-    <section class="h-100 h-custom">
-  <div class="container py-5 h-100">
+ <section class="h-100 h-custom">
+<div class="container py-5 h-100">
+
+   <div class="col-12">
+     <div class="card card-registration card-registration-2" style="border:none">
+     
+         <div class="row g-0">
+           <div class="col-lg-8">
+             <div class="p-5">
+              
+               <hr class="my-4">
+               <CartItem :refeshlistcart="refeshlistcart" :carts="carts" @deleted:cartIndex="delcart"></CartItem>
+               <div class="d-flex justify-content-between mb-5">
+                 <h5 class="text-uppercase">Tạm tính:</h5>
+                 <h5>{{total}}</h5>
+               </div>
+               <div class="pt-5">
+                 <h6 class="mb-0"><router-link to="/" class="text-body"><i
+                       class="fas fa-long-arrow-alt-left me-2"></i>Quay lại</router-link></h6>
+               </div>
+             </div>
+
+
+           </div>
+          
+         </div>
    
-      <div class="col-12">
-        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-        
-            <div class="row g-0">
-              <div class="col-lg-8">
-                <div class="p-5">
-                  <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h1 class="fw-bold mb-0 text-black">Giỏ hàng của bạn</h1>
-                    <h6 class="mb-0 text-muted">{{carts.length}} items</h6>
-                  </div>
-                  <hr class="my-4">
-                  <CartItem :refeshlistcart="refeshlistcart" :carts="carts" @deleted:cartIndex="delcart"></CartItem>
-                  <div class="pt-5">
-                    <h6 class="mb-0"><router-link to="/" class="text-body"><i
-                          class="fas fa-long-arrow-alt-left me-2"></i>Quay lại</router-link></h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 bg-grey">
-                <div class="p-5">
-                 <h1 class="fw-bold mb-5 mt-2 pt-1">Thông tin đơn hàng</h1> 
-                 
-                  <div class="d-flex justify-content-between mb-5">
-                    <h5 class="text-uppercase">Tổng cộng:</h5>
-                    <h5>{{total}}</h5>
-                  </div>
+     </div>
+   </div>
 
-                  <!-- <div  class="button"
-                     @click="registerproduct()">
-                     <a href="" class="btn btn-2" >Thanh toán</a>
-                    
-                  </div> -->
-                  <div class="container">
-                    <div  class="button"  @click="registerproduct()">
-                    <a href="#" class="btn-main btn-2" >Thanh toán</a>
-    
-                     </div>
-
-                    </div>
-
-                </div>
-              </div>
-            </div>
-      
-        </div>
-      </div>
-
-  </div>
+</div>
 </section>
+  </div>
 </template>
 <style scoped>
 @media (min-width: 1025px) {
 .h-custom {
 height: 100%;
 }
+}
+.p-5{
+   width: 700px;
+
+
+
 }
 h1{
   font-size:25px;
@@ -150,7 +139,7 @@ display:flex;
 
         }
 
-       
+
 .btn-main{
  text-decoration: none;
  font-size: 1.25rem;
@@ -182,59 +171,4 @@ display:flex;
   transform: translate(5px,5px);
 }
 
-.py-5{
-    
-    width: 70%;
-
-    padding-top: 1rem!important;
-    padding-bottom: 1rem!important;
-}
-.card-registration .select-input.form-control[readonly]:not([disabled]) {
-font-size: 1rem;
-line-height: 2.15;
-padding-left: .75em;
-padding-right: .75em;
-}
-
-.card-registration .select-arrow {
-top: 13px;
-}
-
-.bg-grey {
-background-color: #eae8e8;
-}
-
-@media (min-width: 992px) {
-.card-registration-2 .bg-grey {
-border-top-right-radius: 16px;
-border-bottom-right-radius: 16px;
-}
-}
-
-@media (max-width: 991px) {
-.card-registration-2 .bg-grey {
-border-bottom-left-radius: 16px;
-border-bottom-right-radius: 16px;
-}
-}
-.breadcrumb-item a {
-            font-size: 18px;
-            color: #333;
-    }
-    a{
-        text-decoration: none;
-    }
-    .breadcrum{
-        display: flex;
-        flex-wrap: wrap;
-        font-size: 18px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        padding-left: 14%;
-        background: #fafafa;
-        list-style: none;
-    }
-    .bg-grey{
-      background: #f4fbff;
-    }
 </style>

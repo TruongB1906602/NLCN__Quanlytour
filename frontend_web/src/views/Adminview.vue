@@ -181,6 +181,7 @@
                         </label>
                         <input type="checkbox" name="" id="btn-3">
                         <ul>
+                            <li @click="showBlock(7)"><a href="#" >DS Khách hàng</a></li>
                             <li @click="showBlock(4)"><a href="#" >Thêm khách hàng</a></li>
                             <li  @click="showBlock(5)"><a href="#">Tour đã đặt</a></li>
                          
@@ -234,28 +235,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
     
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- <nav class="nav-bar">
-                        <ul class="menu">
-                        
-                        <li >
-                        <label for="btn-5" class="second">  
-                            <i class="fa-solid fa-bag-shopping"></i>
-                               Profile
-                            <span class="fas fa-caret-down"></span>
-
-                        </label>
-                        <input type="checkbox" name="" id="btn-5">
-                        <ul>
-                            <li @click="showBlock(4)"><a href="#" >Thêm khách hàng</a></li>
-                            <li  @click="showBlock(5)"><a href="#">Tour đã đặt</a></li>
-                         
-                           
-                        </ul>
-                        </li>
-                    </ul>
-                    </nav> -->
-                    </div>
+                   
                 </nav>
     
                 <div class="container-fluid px-4">
@@ -303,7 +283,7 @@
                     </div>
     
                     <div class="row my-5">
-                        <!-- <h3 class="fs-4 mb-3">Danh sách khách sạn</h3>-->
+                    
                 <div class="col">     
                 <div class="list_hotels"  v-if="currentBlock == 1" >
                     <div class="heading">
@@ -412,14 +392,24 @@
 
                  </div>
 
-              
+                 <div class="list-customer" v-else-if="currentBlock == 7">
+                    <div class="tour-heading">
+                        <h4>Danh Sách Khách Hàng </h4>
+                      
+                
+                    </div>
+                    <PayList :pays="pays" :refeshlist="getall" :getindexpay="getindexpay" v-model:activeIndexPay="activeIndexPay">
+                            
+                        </PayList>
+                   
+                    </div> 
                 
                 <div class="list_products" v-else>
                     <div class="tour-heading">
                         <h4>Danh Sách Khách Hàng </h4>
-                     <router-link to="/addcreatepay"> 
+                     <!-- <router-link to="/addcreatepay"> 
                             <button class="btn btn-danger"><i class="fa-solid fa-folder-plus"></i> Tạo mới</button>
-                     </router-link> 
+                     </router-link>  -->
                 
                     </div>
                    
@@ -688,13 +678,13 @@ nav.nav-bar ul{
 }
 .nav-bar ul ul li a{
   color: black;
-  font-size: 17px;
+  font-size: 15px;
 
 }
 nav.nav-bar ul li span{
   font-size: 18px;
   float: right;
-  margin-top: 20px;
+  margin-top: 15px;
   padding: 0 10px;
 }
 nav.nav-bar .menu:before{

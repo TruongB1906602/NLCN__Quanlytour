@@ -124,6 +124,11 @@ const routes = [
         component: () => import("@/views/UserProfile.vue"),
     },
     {
+        path: "/success",
+        name: "success",
+        component: () => import("@/views/Successorder.vue"),
+    },
+    {
         path: "/admin",
         name: "admin",
         component: () => import("@/views/Adminview.vue"),

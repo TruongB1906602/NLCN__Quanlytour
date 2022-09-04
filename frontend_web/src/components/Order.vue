@@ -48,7 +48,7 @@ export default{
        },
        registerproduct(){
          if(this.carts.length > 0){
-          this.toasts.title = "Success",
+          this.toasts.title = "Thông báo!",
           this.toasts.msg = "Đã cập nhật",
           this.toasts.type = "success",
           this.toasts.duration=1000,

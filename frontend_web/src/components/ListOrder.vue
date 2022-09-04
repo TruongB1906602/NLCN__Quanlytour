@@ -58,7 +58,7 @@
                
             </div>
             <div class=" row-cols-1">
-            <h4 class="heading" >Tên khách đặt</h4>
+            <h4 class="heading" >Tên khách</h4>
             <div class="name" v-for="order in orders"
                 :key="order._id"
               
@@ -68,13 +68,13 @@
                
             </div>
             <div class=" row-cols-1">
-            <h4 class="heading" >Giá tour</h4>
-            <div class="price" v-for="order in orders"
+            <h4 class="heading" >Địa chỉ</h4>
+            <div class="address" v-for="order in orders"
                 :key="order._id"
               
             >
             
-                <span>{{order.price}}</span></div>
+                <span>{{order.address}}</span></div>
                
             </div>
             
@@ -89,13 +89,13 @@
                
             </div>
             <div class=" row-cols-1">
-            <h4 class="heading" >Số lượng</h4>
-            <div class="quantity" v-for="order in orders"
+            <h4 class="heading" >Sđt</h4>
+            <div class="phone" v-for="order in orders"
                 :key="order._id"
               
             >
             
-                <span>{{order.quantity}}</span></div>
+                <span>{{order.phone}}</span></div>
                
             </div>
             <div class=" row-cols-1">
@@ -152,24 +152,24 @@
             background: white;
           
     }
-    .quantity{
+    .phone{
         height:80px;
          font-weight: 500;
-        font-size: 12px;
-        padding: 20px;
+        font-size: 14px;
+        padding: 10px;
          border: 1px solid #dee2e6;
         background: white;
-        width: 70px;
+        width: 100px;
           
     }
-    .price{
+    .address{
          border: 1px solid #dee2e6;
         height: 80px;
         font-size: 14px;
-         width: 100px; 
+         width: 150px; 
         font-weight: 500;
         padding: 10px;
-           background: white;
+       background: white;
         
     
     } 
@@ -220,7 +220,7 @@
          border: 1px solid #dee2e6;
         height: 80px;
         font-size: 14px;
-        width: 200px;
+        width: 160px;
          font-weight: 500;
          padding: 10px;
          overflow: hidden;

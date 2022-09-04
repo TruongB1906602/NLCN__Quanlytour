@@ -81,7 +81,7 @@
          <div class="form-group">
         <label for="nameproduct"  class="pass">Password:</label>
         <Field type="password" class="form-control" id="nameproduct" name="password" v-model="infouser.password" placeholder="Enter password" />
-        <!-- <ErrorMessage name="password" class="text-danger" /> -->
+    
       </div>
       <button type="submit" class="btn btn-primary" @click="updateUser">Lưu</button>
       <br>

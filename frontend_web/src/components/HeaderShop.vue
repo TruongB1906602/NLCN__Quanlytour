@@ -110,10 +110,7 @@ import toast from '../assets/js/toasts';
         </li>
       </ul>  
        <div class="main">
-      <!-- <form class="d-flex flex-mb">
-        <input class="form-control me-2 hiden" id="input_search" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-dark" type="button" @click="slideSearch()"><i class="bi bi-search icon"></i></button>
-      </form> -->
+    
      
        <div class="Cart">
          <div class="wrapper_cart">

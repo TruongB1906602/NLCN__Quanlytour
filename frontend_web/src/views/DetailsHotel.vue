@@ -49,8 +49,8 @@
                     this.cartitem.title = this.detailhotel.title ;
                     this.cartitem.img =this.detailhotel.img[0];
                     this.cartitem.price = this.detailhotel.price; 
-                 
-                 
+                    console.log(this.cartitem);
+                      
                 
                   
                 }catch(error){

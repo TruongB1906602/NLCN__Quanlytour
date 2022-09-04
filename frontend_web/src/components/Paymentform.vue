@@ -31,11 +31,10 @@ import toastsjs from '../assets/js/toasts.js'
             
             others: yup
             .string(),
-            name: yup
-            .string(),
+          
       
-            userId: yup
-            .string(""),
+            // userId: yup
+            // .string(""),
             
             address: yup
             .string()
@@ -67,7 +66,10 @@ import toastsjs from '../assets/js/toasts.js'
                      quantity:"",
                      title:"",
                      price:"",
-                     name:""
+                     name:"",
+                     phone:"",
+                     address:"",
+                     
                   
                 },
                
@@ -99,8 +101,8 @@ import toastsjs from '../assets/js/toasts.js'
            toastsjs,
           submitpay(){
       
-           this.paydetails.userId = this.currentUser._id;
-           this.orderitem.name = this.paydetails.name;
+          //  this.paydetails.userId = this.currentUser._id;
+        
           this.$emit('submit:pay',this.paydetails);
           	if (this.resetAfterSubmit) {
               
@@ -116,6 +118,8 @@ import toastsjs from '../assets/js/toasts.js'
                      this.cartItem=  await CartService.get(this.currentUser._id)
                       
                      this.orderitem.userId = this.currentUser._id;
+                        this.toastsjs(); 
+                           
                       console.log(this.cartItem)
                       console.log(this.orderitem)
                     for(var i in this.cartItem){
@@ -125,14 +129,14 @@ import toastsjs from '../assets/js/toasts.js'
                         OrderService.create(this.orderitem);
                     }  
 
-                     this.toastsjs(); 
+                    //  this.toastsjs(); 
                            
                       
                 }catch(error){
                     this.toasts.title="Message",
-                    this.toasts.msg="Bạn chưa đăng nhập!",
+                    this.toasts.msg="Bạn chưa nhập đầy đủ thông tin!",
                     this.toasts.type="warn",
-                    this.toasts.duration=3000,
+                    this.toasts.duration=2000,
                     this.toastsjs(); 
                     console.log(error);
                 }
@@ -154,9 +158,9 @@ import toastsjs from '../assets/js/toasts.js'
         
      <div class="left">
      
-         <h4>Thông tin đặt tour</h4>
+         <h4>Thêm khách hàng</h4>
       <div class="form-group">
-        <label for="nameproduct">Tên khách hàng</label>
+        <label for="nameproduct">Tên khách</label>
         <Field type="text" class="form-control" id="priceproduct" name="name" placeholder="Nhập vào họ tên" v-model="paydetails.name" />
         <ErrorMessage name="name" class="text-danger"  />
       </div>
@@ -180,13 +184,11 @@ import toastsjs from '../assets/js/toasts.js'
           <div class="form-group">
             
            <textarea   cols="35" rows="4"  name="others" v-model="paydetails.others" ></textarea>
-              <!-- <ErrorMessage name="others" class="text-danger" />   -->
+          
           </div>
-         
-            
-      
+        
       </div>
-        <div class="btn"  @click="getidcart()">
+        <div class="btn">
                 <button  type="submit" 
                 
                 @click="getpay"  class="btnsave btn-primary">Lưu thông tin </button>
@@ -201,11 +203,10 @@ import toastsjs from '../assets/js/toasts.js'
 </template>
 <style scoped>
 .wrapper{
-  margin-left: 160px;
-    width: 690px;
+  /* margin-left: 160px; */
+   width:1200px;
     border-radius: 8px;
-    display: flex;
-    justify-content: center;
+   
     padding: 22px;
   
    background: white;
@@ -277,13 +278,13 @@ h4{
 .form-control{
   font: inherit;
     color: currentColor;
-    width: 100%;
+   
   
     height: 1.1876em;
     margin: 0;
     display: block;
     padding: 6px 0 7px;
-    min-width: 0;
+   
     background: none;
     box-sizing: content-box;
     animation-name: mui-auto-fill-cancel;
@@ -295,10 +296,9 @@ h4{
 .form-control1{
   font: inherit;
     color: currentColor;
-    width: 100%;
-    
+
     height: 1.1876em;
-    margin: 0;
+  
     display: block;
     padding: 6px 0 7px;
     min-width: 0;

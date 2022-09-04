@@ -27,9 +27,8 @@
             .required("Giá sản phẩm phải có giá trị."),
             desc: yup
             .string(),
-              // .required("Giá sản phẩm phải có giá trị."),
+          
             
-             
             
             category: yup
             .string()
@@ -56,10 +55,7 @@
     emits:['submit:product'],
     
     methods:{
-      getdata(){
-        
-      },
-
+    
 
      
       addImge(){
