@@ -12,9 +12,7 @@ class CartService {
      async get(id) {
          return (await this.http.get(`/find/${id}`)).data;
      }
-    // async get(userId) {
-    //      return (await this.http.get(`/find/${userId}`)).data;
-    //  }
+  
     async update(id, data) {
         return (await this.http.put(`/${id}`, data)).data;
     }

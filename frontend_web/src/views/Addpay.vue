@@ -33,9 +33,25 @@
               try {
                   await PayService.create(data);
                   this.toastjs();
-                  setTimeout(()=>{
-                    location.reload();
-                  },2000);
+                  // setTimeout(()=>{
+                  //   location.reload();
+                  // },2000);
+              }catch(error) {
+                  console.log(error);
+                      this.toasts.title = "Warning",
+                      this.toasts.msg="Lỗi",
+                      this.toasts.type = "warn",
+                      this.toasts.duration=2000
+                      this.toastjs();
+                  }
+            },  
+            async getpay() {
+              try {
+                  await PayService.get(id);
+                  this.toastjs();
+                  // setTimeout(()=>{
+                  //   location.reload();
+                  // },2000);
               }catch(error) {
                   console.log(error);
                       this.toasts.title = "Warning",
@@ -44,7 +60,12 @@
                       this.toasts.duration=2000
                       this.toastjs();
                   }
-              },  
+            },  
+
+
+
+
+
     },
   };
   </script>
@@ -67,10 +88,12 @@
                    :pay="{}"	
                   @submit:pay="addpay"
                   :resetAfterSubmit="false"
+                 
         />
               
       </div>
-           <!-- <Cartshopdetails />  -->
+     
+        
         
       </div>
     </div>

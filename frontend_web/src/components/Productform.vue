@@ -1,6 +1,7 @@
 <script>
   import * as yup from "yup";
   import { Form, Field, ErrorMessage } from "vee-validate";
+  //  CKEDITOR.replace('editor1');
   
   export default{
        
@@ -135,7 +136,7 @@
       <div class="form-group">
         <label for="nameproduct">Product Description</label>
 
-          <textarea name="desc" class="form-control " rows="6" cols="80"  placeholder="Enter product description" v-model="productLocal.desc" ></textarea>   
+          <textarea  id ="editor1" name="desc" class="form-control " rows="6" cols="80"  placeholder="Enter product description" v-model="productLocal.desc" ></textarea>   
          <ErrorMessage name="desc" class="text-danger" />  
       </div>
       </div>

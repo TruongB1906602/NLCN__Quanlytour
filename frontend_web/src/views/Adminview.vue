@@ -19,7 +19,7 @@
     import Addpay from "../views/Addpay.vue";
     import EditProduct from "../views/EditProduct.vue";
     import toast from "../assets/js/toasts";
-    import PayList from "../components/PayList.vue";
+    import PayList from "../components/ListPay.vue";
     
         export default{
             data(){
@@ -392,7 +392,7 @@
 
                  </div>
 
-                 <div class="list-customer" v-else-if="currentBlock == 7">
+                 <!-- <div class="list-customer" v-else-if="currentBlock == 7">
                     <div class="tour-heading">
                         <h4>Danh Sách Khách Hàng </h4>
                       
@@ -402,7 +402,7 @@
                             
                         </PayList>
                    
-                    </div> 
+                </div>  -->
                 
                 <div class="list_products" v-else>
                     <div class="tour-heading">

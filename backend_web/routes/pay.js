@@ -9,7 +9,7 @@ const router = require("express").Router();
 
 //CREATE
 
-router.post("/", verifyToken,async (req, res) => {
+router.post("/",verifyToken,async (req, res) => {
   const newPay = new Pay(req.body);
   try {
       const savedPay = await newPay.save();
@@ -19,13 +19,13 @@ router.post("/", verifyToken,async (req, res) => {
   }
 });
 //UPDATE
-router.put("/:id",verifyToken, async (req, res) => {
+router.put("/:id",verifyTokenAndAdmin, async (req, res) => {
   try {
     const updatedPay = await Pay.findByIdAndUpdate(
       req.params.id,
-      {
-        $set: req.body,
-      },
+       {
+         $set: req.body,
+       },
       { new: true }
     );
     res.status(200).json(updatedPay);
@@ -45,9 +45,9 @@ router.delete("/:id", async (req, res) => {
 
 //GET USER CART
 
-router.get("/find/:userId", async (req, res) => {
+router.get("/find/:id", async (req, res) => {
   try {
-    const pay = await Pay.find({ userId: req.params.userId });
+    const pay = await Pay.find({id:  req.params.id });
     res.status(200).json(pay);
   } catch (err) {
     res.status(500).json(err);

@@ -149,17 +149,15 @@
             submitpay(){
         
              this.paydetails.userId = this.currentUser._id;
-             
              this.orderitem.name = this.paydetails.name;
-           
              this.orderitem.phone = this.paydetails.phone;
              this.orderitem.address = this.paydetails.address;
-          
+
             this.$emit('submit:pay',this.paydetails);
                 if (this.resetAfterSubmit) {
-                
+                     
                       this.$refs.contactForm.resetForm();
-                    
+                     
                 }
          
               
@@ -173,7 +171,8 @@
                        this.cartItem=  await CartService.get(this.currentUser._id)
                         
                        this.orderitem.userId = this.currentUser._id;
-                       
+                      document.querySelector('#after').style.display='block';
+                    
                        this.toastsjs(); 
                       for(var i in this.cartItem){
                           this.orderitem.price = this.cartItem[i].price;
@@ -182,9 +181,7 @@
                           OrderService.create(this.orderitem);
                       }  
   
-                  
-                          
-                        
+                     
                   }catch(error){
                       this.toasts.title="Message",
                       this.toasts.msg="Bạn chưa đăng nhập!",
@@ -210,7 +207,7 @@
    
   <div class="wrapper">
   
-       <Form :validation-schema="payform"  @submit="submitpay" >
+       <Form :validation-schema="payform"  @submit="submitpay"  >
           
         <div class="contact">
             <div class="left">
@@ -218,7 +215,7 @@
                      <h4>Thông tin đặt tour</h4>
                     <div class="form-group">
                     <label for="nameproduct">Tên khách hàng</label>
-                    <Field type="text"  class="form-control" id="name1" name="name" placeholder="Nhập vào họ tên" v-model="paydetails.name" />
+                    <Field type="text"  class="form-control" id="name" name="name" placeholder="Nhập vào họ tên" v-model="paydetails.name" />
                     <ErrorMessage name="name" class="text-danger"  />
                     </div>
 
@@ -227,7 +224,14 @@
                 <Field type="text" class="form-control" id="address" name="address" placeholder="Nhập vào địa chỉ" v-model="paydetails.address" />
                 <ErrorMessage name="address" class="text-danger"  />
                 </div>
-   
+               
+
+
+                <div class="form-group">
+                <label for="addressproduct">Địa chỉ</label>
+                <Field type="text" class="form-control" id="userId" name="userId" placeholder="Nhập vào địa chỉ" v-model="paydetails.userId" />
+                <ErrorMessage name="userId" class="text-danger"  />
+                </div>
                 <div class="form-group">
                 <label for="phoneproduct">Phone</label>
                 <Field type="number" class="form-control" id="phone" name="phone"  placeholder="Nhập vào sđt" v-model="paydetails.phone"/>
@@ -237,7 +241,7 @@
   
               </div>
             <div class="right">
-                <h4>Thông tin bổ sung</h4> 
+                <h4>Ghi chú</h4> 
                 <div class="form-group">
                 
                 <textarea  id="others" cols="35" rows="4"  name="others" v-model="paydetails.others" ></textarea>
@@ -263,14 +267,20 @@
                    <hr class="my-4">
                    <CartItem :refeshlistcart="refeshlistcart" :carts="carts" @deleted:cartIndex="delcart"></CartItem>
                    <div class="d-flex justify-content-between mb-5">
-                     <h5>Tạm tính:</h5>
+                     <h5>Thành tiền:</h5>
                      <h5>{{total}}</h5>
                    </div>
                    <div class="btn"  @click="getidcart()">
                              <button  type="submit" 
                   
                               @click="getpay"  class="btnsave btn-primary">Đặt hàng</button>
+                            
           
+                    </div>
+                    <div class="after-order" id="after">
+                          
+                             <button  class="btnsave btn-primary"> Sửa</button>
+                              <button  class="btnsave btn-primary">Hủy</button>
                     </div>
                    <div class="pt-5">
                      <h6 class="mb-0"><router-link to="/" class="text-body"><i
@@ -320,6 +330,10 @@
      
     border: 1px solid grey;
   }
+  .after-order{
+     display: none; 
+    
+  }
   h4{
       font-size: 18px;
       font-weight: 600;
@@ -327,7 +341,7 @@
      
       font-weight: 600;
       margin-bottom: 15px;
-      color: #006bbf;
+      color:#333;
       border-bottom: 1px solid #006bbf;
       padding-bottom: 7px;
      

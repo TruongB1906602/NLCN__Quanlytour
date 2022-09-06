@@ -42,6 +42,7 @@ export default {
     async getproduct(id) {
 			try {
 				this.product = await ProductService.get(id);
+               
 			} catch (error) {
 				console.log(error);
 				this.$router.push({

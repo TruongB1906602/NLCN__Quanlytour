@@ -66,7 +66,7 @@ import ProductService  from '../services/Product.service';
                 class="img-fluid rounded-3" alt="">
             </div>
             <div class="col-md-6 col-lg-6 col-xl-6">
-                <h6 class="text">{{item.title}}</h6>
+                <h6 class="text">Tour: {{item.title}}</h6>
                     <div>
                        
                          <p class="text">   Giá: <span style="font-size: 14px; color:black">{{  Intl.NumberFormat('de-DE',{style: 'currency',currency: 'VND'}).format(item.price) }}/người </span></p>  
@@ -100,8 +100,8 @@ import ProductService  from '../services/Product.service';
       
    }
    .img-fluid {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 70px;
     margin-bottom: 10px;
    }
    .col-xl-6 {

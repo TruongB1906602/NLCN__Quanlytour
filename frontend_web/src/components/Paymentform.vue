@@ -15,14 +15,14 @@ import toastsjs from '../assets/js/toasts.js'
           pay: { type: Object, required: true },
           resetAfterSubmit: { type: Boolean, default: false },
           
-            refeshlistcart:Function,
-            carts:[],
+            // refeshlistcart:Function,
+            // carts:[],
       },
-         computed:{
-            ...mapState(useAuthStore,{
-                currentUser: "user",
-            }),
-        },
+        //  computed:{
+        //     ...mapState(useAuthStore,{
+        //         currentUser: "user",
+        //     }),
+        // },
      data() {
         const payform = yup.object().shape({ 
             name: yup
@@ -33,8 +33,8 @@ import toastsjs from '../assets/js/toasts.js'
             .string(),
           
       
-            // userId: yup
-            // .string(""),
+            //  userId: yup
+            //  .string(""),
             
             address: yup
             .string()
@@ -101,7 +101,7 @@ import toastsjs from '../assets/js/toasts.js'
            toastsjs,
           submitpay(){
       
-          //  this.paydetails.userId = this.currentUser._id;
+          // this.paydetails.userId = this.currentUser._id;
         
           this.$emit('submit:pay',this.paydetails);
           	if (this.resetAfterSubmit) {
@@ -111,39 +111,10 @@ import toastsjs from '../assets/js/toasts.js'
          
             
       },
-             async getidcart() {
-
-                try{
-                  
-                     this.cartItem=  await CartService.get(this.currentUser._id)
-                      
-                     this.orderitem.userId = this.currentUser._id;
-                        this.toastsjs(); 
-                           
-                      console.log(this.cartItem)
-                      console.log(this.orderitem)
-                    for(var i in this.cartItem){
-                        this.orderitem.price = this.cartItem[i].price;
-                        this.orderitem.title = this.cartItem[i].title;
-                        this.orderitem.quantity = this.cartItem[i].quantity;
-                        OrderService.create(this.orderitem);
-                    }  
-
-                    //  this.toastsjs(); 
-                           
-                      
-                }catch(error){
-                    this.toasts.title="Message",
-                    this.toasts.msg="Bạn chưa nhập đầy đủ thông tin!",
-                    this.toasts.type="warn",
-                    this.toasts.duration=2000,
-                    this.toastsjs(); 
-                    console.log(error);
-                }
-                
+        
             
                 
-             },
+             
       }
   }
      
@@ -191,7 +162,7 @@ import toastsjs from '../assets/js/toasts.js'
         <div class="btn">
                 <button  type="submit" 
                 
-                @click="getpay"  class="btnsave btn-primary">Lưu thông tin </button>
+               class="btnsave btn-primary">Lưu thông tin </button>
         
            </div>
      

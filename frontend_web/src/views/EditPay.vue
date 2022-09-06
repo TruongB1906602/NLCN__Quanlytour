@@ -1,4 +1,6 @@
 <template>
+
+    <!-- <HeaderShop></HeaderShop> -->
     <toastsVue></toastsVue>
         <div v-if="pay" class="page">
         
@@ -6,36 +8,41 @@
                   :pay="pay"
                   @submit:pay="updatePay"
             />
+            
         </div>
+    
     </template>
     
     <script>
     import toastjs from "../assets/js/toasts";
     import toastsVue from "../components/toasts.vue";
     import PayService from "@/services/Pay.service";
+    import HeaderShop from "../components/HeaderShop.vue";
     import Paymentform from "../components/Paymentform.vue";
     export default {
       data(){
         return {
              toasts:{
                   title:"Success",
-                  msg:"Sửa sản phẩm thành công",
+                  msg:"Sửa thông tin thành công",
                   type:"success",
                   duration:2000
                   },
-           pay:null,
+            pay:null,
         }
       },
         components: {
-         
-            Paymentform,
-            toastsVue
-        },
+    // HeaderShop,
+  
+    toastsVue,
+    Paymentform
+},
         methods: {
         toastjs,
         async getpay(id) {
                 try {
                     this.pay = await PayService.get(id);
+                    console.log(this.pay.id)
                 } catch (error) {
                     console.log(error);
                     this.$router.push({
