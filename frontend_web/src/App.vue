@@ -4,9 +4,7 @@
 
 
   export default {
-    data(){
-      
-    },
+   
     components:{
  
     FooterShop,

@@ -5,7 +5,7 @@
     import toastsVue from "../components/toasts.vue";
     import ProductService from "../services/Product.service";
     import HotelService from "../services/Hotel.service";
-    import PayService from "@/services/Pay.service";
+    import PayService from "../services/Pay.service";
     import ListProduct from "../components/ListProduct.vue";
     import ListOrder from "@/components/ListOrder.vue";
     import ListHotel from "../components/ListHotel.vue";
@@ -16,7 +16,7 @@
     import OrderService from "../services/Order.service";
     import Addcreatepay from "@/views/Addcreatepay.vue";
     import AddProduct from "@/views/AddProduct.vue";
-    import Addpay from "../views/Addpay.vue";
+    import EditPay from "../views/EditPay.vue";
     import EditProduct from "../views/EditProduct.vue";
     import toast from "../assets/js/toasts";
     import PayList from "../components/ListPay.vue";
@@ -82,7 +82,7 @@
                              element.classList.remove("active");
                          });
                          list[this.activeIndexOrder].classList.add("active");
-                        return this.pays[this.activeIndexOrder];
+                        return this.orders[this.activeIndexOrder];
                      }
                 },
                   getindexuser(){
@@ -106,13 +106,14 @@
         Usercard,
         ListHotel,
         Hotelcard,
-        Addpay,
+      
         PayList,
         Paycard,
         ListOrder,
         Addcreatepay,
         AddProduct,
         EditProduct,
+        EditPay,
        
     
     },
@@ -390,26 +391,13 @@
                 
                         <Addcreatepay class="addcreatepay"/>
 
-                 </div>
+                 </div> 
 
-                 <!-- <div class="list-customer" v-else-if="currentBlock == 7">
-                    <div class="tour-heading">
-                        <h4>Danh Sách Khách Hàng </h4>
-                      
-                
-                    </div>
-                    <PayList :pays="pays" :refeshlist="getall" :getindexpay="getindexpay" v-model:activeIndexPay="activeIndexPay">
-                            
-                        </PayList>
-                   
-                </div>  -->
-                
+        
                 <div class="list_products" v-else>
                     <div class="tour-heading">
                         <h4>Danh Sách Khách Hàng </h4>
-                     <!-- <router-link to="/addcreatepay"> 
-                            <button class="btn btn-danger"><i class="fa-solid fa-folder-plus"></i> Tạo mới</button>
-                     </router-link>  -->
+                  
                 
                     </div>
                    
@@ -418,18 +406,22 @@
                             
                             </PayList>
                         
-                            <div class="card_product border border-light border-2 h-100 bg-light text-dark" style="padding: 10px;" v-if="getindexpay">  
-                                    <Paycard :pays="getindexpay"></Paycard>
-                                     <router-link
-                                    :to="{
-                                    name: 'editpay',
-                                    params: { id: getindexpay._id },
-                                }"
-                                    >
-                                        <span class="badge bg-warning text-dark">
-                                        <i class="bi bi-pencil-square"></i> Chỉnh sửa</span>
-                                    </router-link> 
-                                </div>
+                         <div class="card_product border border-light border-2 h-100 bg-light text-dark" style="padding: 10px;" v-if="getindexpay">  
+                            <h5>Chi tiết tour</h5>
+                            <Paycard :pays="getindexpay"></Paycard> 
+                            <router-link
+                            :to="{
+                            name: 'editpay',
+                            params: { id: getindexpay._id },
+                        }"
+                            >
+                                <span class="badge bg-warning text-dark">
+                        
+    
+                                <i class="bi bi-pencil-square"></i> Chỉnh sửa</span>
+                            </router-link>
+                         
+                        </div>
                           
                        
                       </div>

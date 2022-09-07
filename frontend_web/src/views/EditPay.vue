@@ -2,21 +2,21 @@
 
     <!-- <HeaderShop></HeaderShop> -->
     <toastsVue></toastsVue>
+    <div>
         <div v-if="pay" class="page">
         
             <Paymentform
                   :pay="pay"
                   @submit:pay="updatePay"
             />
-            
         </div>
-    
+        </div>
     </template>
     
     <script>
     import toastjs from "../assets/js/toasts";
     import toastsVue from "../components/toasts.vue";
-    import PayService from "@/services/Pay.service";
+    import PayService from "../services/Pay.service";
     import HeaderShop from "../components/HeaderShop.vue";
     import Paymentform from "../components/Paymentform.vue";
     export default {
@@ -24,25 +24,23 @@
         return {
              toasts:{
                   title:"Success",
-                  msg:"Sửa thông tin thành công",
+                  msg:"Sửa sản phẩm thành công",
                   type:"success",
                   duration:2000
                   },
-            pay:null,
+            pay: null,
         }
       },
         components: {
-    // HeaderShop,
-  
-    toastsVue,
-    Paymentform
-},
+            // HeaderShop,
+            Paymentform,
+            toastsVue
+        },
         methods: {
         toastjs,
         async getpay(id) {
                 try {
-                    this.pay = await PayService.get(id);
-                    console.log(this.pay.id)
+                    this.pay= await PayService.get(id);
                 } catch (error) {
                     console.log(error);
                     this.$router.push({
@@ -72,9 +70,4 @@
         }
     };
     </script>
-    <style scoped>
-    h4{
-        margin-left: 30px;
-    }
-    </style>
     

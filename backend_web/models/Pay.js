@@ -4,8 +4,8 @@ const PaySchema = new mongoose.Schema(
   {
    
     address: { type: String, required: true},
-    // others: { type: String},
-    // userId: { type: String},
+   others: { type: String},
+     userId: { type: String},
    
     phone: { type: Number, required: true},
     name: { type: String, required: true},

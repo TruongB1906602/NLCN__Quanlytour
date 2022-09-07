@@ -4,6 +4,9 @@ const ProductSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, unique: true },
     desc: { type: String, required: true, },
+    time: { type: String, required: true, },
+    date: { type: String, required: true, },
+    destination: { type: String, required: true, },
     sl: { type: Number, required: true, },
     // schedule: { type: String, required: true, },
     // note: { type: String, required: true, },

@@ -46,8 +46,7 @@ export default {
 			} catch (error) {
 				console.log(error);
 				this.$router.push({
-					name: "notfound",
-					params: { pathMatch: this.$route.path.split("/").slice(1) },
+					name: "notfound", 
 					query: this.$route.query,
 					hash: this.$route.hash,
 				});
@@ -69,6 +68,7 @@ export default {
 	},
     created(){
         this.getproduct(this.$route.params.id);
+      
     }
 };
 </script>

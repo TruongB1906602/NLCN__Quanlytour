@@ -1,5 +1,5 @@
 <script>
-   import PayService from "@/services/Pay.service";
+   import PayService from "../services/Pay.service";
     import toastjs from "../assets/js/toasts";
         export default{
             data(){
@@ -38,7 +38,7 @@
                         this.toastjs();
                     }
                 },
-                updatePay(index) {
+                updateActivePay(index) {
                 this.$emit("update:activeIndexPay", index);
                 console.log(this.pays)
                 },
@@ -92,7 +92,7 @@
             <div  class="btn list-group-item pay-item d-flex" v-for="(pay, index) in pays"
             
                 :key="pay._id"
-                @click="updatePay(index)"
+                @click="updateActivePay(index)"
                
             >
               <button class=" btn-outline-danger btn-sm" @click="delpay(pay._id)"><ion-icon name="close-circle-outline"></ion-icon></button>

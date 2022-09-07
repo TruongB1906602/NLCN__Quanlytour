@@ -55,11 +55,9 @@
   
 },
     
-    emits:['submit:product'],
+    emits:['submit:hotel'],
     methods:{
-      getdata4(){
-          CKEDITOR.replace('editor2');
-      },
+    
       addImge(){
         document.querySelector("#imghotel2").style.display = "block";
       },

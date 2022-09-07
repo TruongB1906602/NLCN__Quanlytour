@@ -26,6 +26,12 @@
             sl: yup
             .string()
             .required("Giá sản phẩm phải có giá trị."),
+            time: yup
+            .string()
+            .required("Thời gian đi có giá trị."),
+            date: yup
+            .string()
+            .required("Ngày đi có giá trị."),
             desc: yup
             .string(),
           
@@ -109,6 +115,39 @@
   </div>
   </div>
 
+  <div class="row">
+    <div class="col">
+         <div class="form-group">
+        <label for="priceproduct">Ngày đi</label>
+        <Field type="text" class="form-control" id="priceproduct" name="date" placeholder="Enter product price" v-model="productLocal.date" />
+        <ErrorMessage name="date" class="text-danger"  />
+      </div>
+    </div>
+    <div class="col">
+     <div class="form-group">
+        <label for="categoryproduct">Thời gian</label>
+        <Field type="text" class="form-control" id="categoryproduct" name="time" placeholder="Enter product categrogy" v-model="productLocal.time"/>
+          <ErrorMessage name="time" class="text-danger" />
+      </div>
+    </div>
+  </div>
+   <div class="row">
+    <div class="col">
+         <div class="form-group">
+        <label for="priceproduct">Ngày đi</label>
+        <Field type="text" class="form-control" id="priceproduct" name="date" placeholder="Enter product price" v-model="productLocal.date" />
+        <ErrorMessage name="date" class="text-danger"  />
+      </div>
+    </div>
+    <div class="col">
+     <div class="form-group">
+        <label for="categoryproduct">Thời gian</label>
+        <Field type="text" class="form-control" id="categoryproduct" name="time" placeholder="Enter product categrogy" v-model="productLocal.time"/>
+          <ErrorMessage name="time" class="text-danger" />
+      </div>
+    
+  </div>
+  </div>
     <div class="row">
       <div class="col">
          <div class="form-group">

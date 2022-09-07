@@ -1,4 +1,4 @@
-const Pay= require("../models/Pay");
+const Pay = require("../models/Pay");
 const {
   verifyToken,
   verifyTokenAndAuthorization,
@@ -9,7 +9,7 @@ const router = require("express").Router();
 
 //CREATE
 
-router.post("/",verifyToken,async (req, res) => {
+router.post("/", verifyToken,async (req, res) => {
   const newPay = new Pay(req.body);
   try {
       const savedPay = await newPay.save();
@@ -19,13 +19,13 @@ router.post("/",verifyToken,async (req, res) => {
   }
 });
 //UPDATE
-router.put("/:id",verifyTokenAndAdmin, async (req, res) => {
+router.put("/:id",verifyToken, async (req, res) => {
   try {
     const updatedPay = await Pay.findByIdAndUpdate(
       req.params.id,
-       {
-         $set: req.body,
-       },
+      {
+        $set: req.body,
+      },
       { new: true }
     );
     res.status(200).json(updatedPay);
@@ -37,22 +37,22 @@ router.put("/:id",verifyTokenAndAdmin, async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     await Pay.findByIdAndDelete(req.params.id);
-    res.status(200).json("Pay has been deleted...");
+    res.status(200).json("Cart has been deleted...");
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 //GET USER CART
-
-router.get("/find/:id", async (req, res) => {
+router.get("/find/:id",async (req, res) => {
   try {
-    const pay = await Pay.find({id:  req.params.id });
+    const pay = await Pay.findById(req.params.id);
     res.status(200).json(pay);
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 // Đang phát triển
 // //GET ALL
 router.get("/",async (req, res) => {

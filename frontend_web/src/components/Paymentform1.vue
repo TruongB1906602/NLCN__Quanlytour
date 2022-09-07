@@ -227,11 +227,7 @@
                
 
 
-                <div class="form-group">
-                <label for="addressproduct">Địa chỉ</label>
-                <Field type="text" class="form-control" id="userId" name="userId" placeholder="Nhập vào địa chỉ" v-model="paydetails.userId" />
-                <ErrorMessage name="userId" class="text-danger"  />
-                </div>
+             
                 <div class="form-group">
                 <label for="phoneproduct">Phone</label>
                 <Field type="number" class="form-control" id="phone" name="phone"  placeholder="Nhập vào sđt" v-model="paydetails.phone"/>

@@ -1,11 +1,6 @@
 <script>
   import * as yup from "yup";
   import { Form, Field, ErrorMessage } from "vee-validate";
-
-import { mapState } from 'pinia'
- import { useAuthStore } from "@/stores/Auth.store";
-import CartService from '../services/Cart.service'
-import OrderService from '../services/Order.service'
 import toastsVue from '../components/toasts.vue'
 import toastsjs from '../assets/js/toasts.js'
   
@@ -15,14 +10,8 @@ import toastsjs from '../assets/js/toasts.js'
           pay: { type: Object, required: true },
           resetAfterSubmit: { type: Boolean, default: false },
           
-            // refeshlistcart:Function,
-            // carts:[],
       },
-        //  computed:{
-        //     ...mapState(useAuthStore,{
-        //         currentUser: "user",
-        //     }),
-        // },
+        
      data() {
         const payform = yup.object().shape({ 
             name: yup
@@ -33,8 +22,8 @@ import toastsjs from '../assets/js/toasts.js'
             .string(),
           
       
-            //  userId: yup
-            //  .string(""),
+              userId: yup
+              .string(""),
             
             address: yup
             .string()
@@ -43,7 +32,7 @@ import toastsjs from '../assets/js/toasts.js'
           .string()
           .required("Điện thoại không có giá trị!")
           .matches(
-            /((09|03|07|08|05)+(\d{8})\b)/g,
+            /((84|0[3|5|7|8|9])+([0-9]{8})\b)/g,
             "Số điện thoại không hợp lệ."
 				),
            
@@ -52,35 +41,7 @@ import toastsjs from '../assets/js/toasts.js'
             
             paydetails:this.pay,
             payform,
-            paydetails:{
-             
-              name:"",
-              phone:"",
-              address:"",
-              others:""
-
-            },
-              cartItem:[],
-               orderitem:{
-                    userId:"",
-                     quantity:"",
-                     title:"",
-                     price:"",
-                     name:"",
-                     phone:"",
-                     address:"",
-                     
-                  
-                },
-               
-                 toasts:{
-                    title:"Success",
-                    msg:"Thêm thông tin thành công!",
-                    type:"success",
-                    duration:2000
-                 },
-
-                 
+      
               
             }
         },
@@ -101,7 +62,7 @@ import toastsjs from '../assets/js/toasts.js'
            toastsjs,
           submitpay(){
       
-          // this.paydetails.userId = this.currentUser._id;
+          //  this.paydetails.userId = this.currentUser._id;
         
           this.$emit('submit:pay',this.paydetails);
           	if (this.resetAfterSubmit) {
@@ -129,7 +90,7 @@ import toastsjs from '../assets/js/toasts.js'
         
      <div class="left">
      
-         <h4>Thêm khách hàng</h4>
+         <h4>Thông tin khách hàng</h4>
       <div class="form-group">
         <label for="nameproduct">Tên khách</label>
         <Field type="text" class="form-control" id="priceproduct" name="name" placeholder="Nhập vào họ tên" v-model="paydetails.name" />
@@ -151,10 +112,10 @@ import toastsjs from '../assets/js/toasts.js'
     
       </div>
       <div class="right">
-           <h4>Thông tin bổ sung</h4> 
+           <h4>Ghi chú</h4> 
           <div class="form-group">
             
-           <textarea   cols="35" rows="4"  name="others" v-model="paydetails.others" ></textarea>
+           <textarea   cols="50" rows="6"  name="others" v-model="paydetails.others" ></textarea>
           
           </div>
         
@@ -175,7 +136,7 @@ import toastsjs from '../assets/js/toasts.js'
 <style scoped>
 .wrapper{
   /* margin-left: 160px; */
-   width:1200px;
+   width:900px;
     border-radius: 8px;
    
     padding: 22px;
@@ -183,7 +144,7 @@ import toastsjs from '../assets/js/toasts.js'
    background: white;
 }
 .right{
-  width: 280px;
+ 
   
     
    display: inline-block;
@@ -202,7 +163,7 @@ h4{
    
     font-weight: 600;
     margin-bottom: 15px;
-    color: #006bbf;
+   
     border-bottom: 1px solid #006bbf;
     padding-bottom: 7px;
    
@@ -213,7 +174,7 @@ h4{
 .left{
    
  margin-right: 30px;
-  width:300px;
+  width:400px;
   display: inline-block;
 
 }
@@ -221,7 +182,7 @@ h4{
  
     border-radius: 4px;
     font-weight: 500;
-    width:50%;
+    width:40%;
     float:left;
     margin-right:10px;
     height: 45px;
@@ -264,23 +225,7 @@ h4{
  
 
 }
-.form-control1{
-  font: inherit;
-    color: currentColor;
 
-    height: 1.1876em;
-  
-    display: block;
-    padding: 6px 0 7px;
-    min-width: 0;
-    background: none;
-    box-sizing: content-box;
-    animation-name: mui-auto-fill-cancel;
-    letter-spacing: inherit;
-    animation-duration: 10ms;
- 
-
-}
 .form-group{
  
   margin-bottom: 15px;
