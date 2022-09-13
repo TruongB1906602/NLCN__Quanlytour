@@ -1,8 +1,9 @@
 <script>
   import * as yup from "yup";
+ 
   import { Form, Field, ErrorMessage } from "vee-validate";
-  //  CKEDITOR.replace('editor1');
-  
+
+  import ProductService from "../services/Product.service";
   export default{
        
       props:{
@@ -34,9 +35,6 @@
             .required("Ngày đi có giá trị."),
             desc: yup
             .string(),
-          
-            
-            
             category: yup
             .string()
             .required("Loại sản phẩm phải có giá trị."),
@@ -57,14 +55,64 @@
     ErrorMessage,
   
   
+  
 },
     
     emits:['submit:product'],
     
+    
     methods:{
     
-
+      getdata(){
+        ClassicEditor
+    .create( document.querySelector( '#editor2' ), {
      
+
+        autosave: {
+            save( editor ) {
+                return saveData( editor.getData() );
+            }
+        }
+    } )
+    .then( editor => {
+        window.editor = editor;
+
+        displayStatus( editor );
+    } )
+    .catch( err => {
+        console.error( err.stack );
+    } );
+
+// Save the data to a fake HTTP server (emulated here with a setTimeout()).
+function saveData( data ) {
+    return new Promise( resolve => {
+        setTimeout( () => {
+            console.log( 'Saved', data );
+
+            resolve();
+        }, HTTP_SERVER_LAG );
+    } );
+}
+
+// Update the "Status: Saving..." info.
+function displayStatus( editor ) {
+    const pendingActions = editor.plugins.get( 'PendingActions' );
+    const statusIndicator = document.querySelector( '#editor-status' );
+
+    pendingActions.on( 'change:hasAny', ( evt, propertyName, newValue ) => {
+        if ( newValue ) {
+            statusIndicator.classList.add( 'busy' );
+        } else {
+            statusIndicator.classList.remove( 'busy' );
+        }
+    } );
+}
+
+   
+        },
+
+      
+    
       addImge(){
         document.querySelector("#imgproduct2").style.display = "block";
       },
@@ -73,6 +121,11 @@
           	if (this.resetAfterSubmit) {
 				     this.$refs.contactForm.resetForm();
 			  }
+
+
+        //  CKEDITOR.instances.editor2.updateElement()
+        //  console.log( CKEDITOR.instances.editor2.getData());
+        //  this.productLocal=  CKEDITOR.instances.editor2.updateElement();
       },
       
     },
@@ -167,7 +220,7 @@
         <ErrorMessage name="sl" class="text-danger"  />
       </div>
       </div>
-    
+
   </div>
   
   <div class="row">
@@ -175,7 +228,9 @@
       <div class="form-group">
         <label for="nameproduct">Product Description</label>
 
-          <textarea  id ="editor1" name="desc" class="form-control " rows="6" cols="80"  placeholder="Enter product description" v-model="productLocal.desc" ></textarea>   
+          <textarea @click="getdata" name="desc" href="#autosave-feature" id="editor2"  class="form-control desc " rows="8" cols="80"  placeholder="Enter product description" v-model="productLocal.desc" >
+              </textarea>
+       
          <ErrorMessage name="desc" class="text-danger" />  
       </div>
       </div>

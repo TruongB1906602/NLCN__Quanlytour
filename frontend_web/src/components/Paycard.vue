@@ -12,10 +12,10 @@
                     <strong>Tên khách hàng:</strong>
                     {{pays.name}}
                 </div>
-                <!-- <div class="p-1">
+                 <div class="p-1">
                     <strong>Thông tin :</strong>
                     {{pays.others}}
-                </div> -->
+                </div> 
                 <div class="p-1">
                     <strong>Địa chỉ:</strong>
                     {{pays.address}}

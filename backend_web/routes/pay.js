@@ -46,7 +46,7 @@ router.delete("/:id", async (req, res) => {
 //GET USER CART
 router.get("/find/:id",async (req, res) => {
   try {
-    const pay = await Pay.findById(req.params.id);
+    const pay = await Pay.find({id: req.params.id});
     res.status(200).json(pay);
   } catch (err) {
     res.status(500).json(err);
@@ -54,10 +54,33 @@ router.get("/find/:id",async (req, res) => {
 });
 
 // Đang phát triển
-// //GET ALL
+// // //GET ALL
+// router.get("/",async (req, res) => {
+//   try {
+//     const pays = await Pay.find();
+//     res.status(200).json(pays);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 router.get("/",async (req, res) => {
+  const qNew = req.query.new;
+  const qCategory = req.query.category;
   try {
-    const pays = await Pay.find();
+    let pays;
+
+    if (qNew) {
+       pays = await  Pay.find().sort({ createdAt: -1 }).limit(1);
+    } else if (qCategory) {
+        pays = await Pay.find({
+        categories: {
+          $in: [qCategory],
+        },
+      });
+    } else {
+        pays = await Pay.find();
+    }
+
     res.status(200).json(pays);
   } catch (err) {
     res.status(500).json(err);

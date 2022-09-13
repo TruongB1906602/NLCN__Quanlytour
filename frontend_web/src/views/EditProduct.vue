@@ -34,6 +34,7 @@ export default {
   },
 	components: {
         // HeaderShop,
+
 	    Productform,
         toastsVue,
     },

@@ -145,11 +145,12 @@
        },  
         
     
-            
+           
             submitpay(){
         
              this.paydetails.userId = this.currentUser._id;
              this.orderitem.name = this.paydetails.name;
+          
              this.orderitem.phone = this.paydetails.phone;
              this.orderitem.address = this.paydetails.address;
 

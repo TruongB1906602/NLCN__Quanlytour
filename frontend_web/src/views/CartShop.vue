@@ -1,12 +1,17 @@
 <script>
 import HeaderShop from '@/components/HeaderShop.vue';
 import CartService from '../services/Cart.service';
+import PayService from '../services/Pay.service';
 import toastsVue from '../components/toasts.vue';
 import toastsjs from '../assets/js/toasts.js'
 import CartItem from "../components/CartItem.vue";
+import { mapState } from 'pinia'
+   import { useAuthStore } from "@/stores/Auth.store";
 export default{
+ 
     data(){
       return{
+        pays:[],
           carts:[],
           toasts:{
               title:"",
@@ -29,6 +34,7 @@ export default{
         async getcarts(){
           try{
           this.carts = await CartService.get(this.getiduser());
+         
           }catch(error){
             console.log(error);
           }
@@ -46,13 +52,30 @@ export default{
        refeshlistcart(){
          this.getcarts();
        },
-       registerproduct(){
+      
+       async registerproduct(){
+        try{
+          this.pays =  await PayService.get(this.$route.params.id);
+             console.log(this.pays)
+          }catch(error){
+            console.log(error);
+          }
+       
          if(this.carts.length > 0){
           this.toasts.title = "Success",
           this.toasts.msg = "Đã cập nhật",
           this.toasts.type = "success",
-          this.toasts.duration=100,
-          this.$router.push("/addpay")
+          this.toasts.duration=1000
+          console.log(this.currentUser._id)
+          console.log(this.pays.name)
+       
+            if( this.currentUser._id === '6308dbb302deedd437f2db30'){
+              
+              this.$router.push("/addpay")
+
+            }else{
+               alert("Loi roi!");
+            }
         
        
           
@@ -74,10 +97,20 @@ export default{
               total=total + this.carts[i].price*this.carts[i].quantity;
            }
              return  new Intl.NumberFormat('de-DE',{style: 'currency',currency: 'VND'}).format(total);
-        }   
+        },
+        
+       
+            ...mapState(useAuthStore,{
+                currentUser: "user",
+            }),
+      
      },
       created(){
+        
         this.refeshlistcart();
+       
+    
+      
      },
 }
 </script>
@@ -98,25 +131,25 @@ export default{
    
       <div class="col-12">
         <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-        
+                 
             <div class="row g-0">
               <div class="col-lg-8">
                 <div class="p-5">
                   <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h1 class="fw-bold mb-0 text-black">Giỏ hàng của bạn</h1>
+                    <h1 class="fw-bold mb-0 text-black">  Giỏ hàng của bạn</h1>
                     <h6 class="mb-0 text-muted">{{carts.length}} items</h6>
                   </div>
                   <hr class="my-4">
                   <CartItem :refeshlistcart="refeshlistcart" :carts="carts" @deleted:cartIndex="delcart"></CartItem>
                   <div class="pt-5">
                     <h6 class="mb-0"><router-link to="/" class="text-body"><i
-                          class="fas fa-long-arrow-alt-left me-2"></i>Quay lại</router-link></h6>
+                          class="fas fa-long-arrow-alt-left me-2"></i> {{pays.name}} Quay lại</router-link></h6>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4 bg-grey">
                 <div class="p-5">
-                 <h1 class="fw-bold mb-5 mt-2 pt-1">Thông tin đơn hàng</h1> 
+                 <h1 class="fw-bold mb-5 mt-2 pt-1">{{pays.name}}Thông tin đơn hàng</h1> 
                  
                   <div class="d-flex justify-content-between mb-5">
                     <h5 class="text-uppercase">Tổng cộng:</h5>

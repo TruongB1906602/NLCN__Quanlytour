@@ -20,6 +20,8 @@
     import EditProduct from "../views/EditProduct.vue";
     import toast from "../assets/js/toasts";
     import PayList from "../components/ListPay.vue";
+   
+
     
         export default{
             data(){
@@ -114,7 +116,7 @@
         AddProduct,
         EditProduct,
         EditPay,
-       
+     
     
     },
             methods:{
@@ -171,35 +173,35 @@
 
                     <ul class="menu">
                         <li>
-                        <label for="" class="first"><i class="fa-solid fa-cutlery"></i>Dashboard</label>
+                            <label for="" class="first"><i class="fa-solid fa-cutlery"></i>Dashboard</label>
                         </li>
                         <li >
-                        <label for="btn-3" class="second">  
-                            <i class="fa-solid fa-bag-shopping"></i>
-                            Quản lý khách hàng 
-                            <span class="fas fa-caret-down"></span>
+                            <label for="btn-3" class="second">  
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                Quản lý khách hàng 
+                                <span class="fas fa-caret-down"></span>
 
-                        </label>
-                        <input type="checkbox" name="" id="btn-3">
-                        <ul>
-                            <li @click="showBlock(7)"><a href="#" >DS Khách hàng</a></li>
-                            <li @click="showBlock(4)"><a href="#" >Thêm khách hàng</a></li>
-                            <li  @click="showBlock(5)"><a href="#">Tour đã đặt</a></li>
-                         
-                           
-                        </ul>
+                            </label>
+                            <input type="checkbox" name="" id="btn-3">
+                            <ul>
+                                <li @click="showBlock(7)"><a href="#" >DS Khách hàng</a></li>
+                                <li @click="showBlock(4)"><a href="#" >Thêm khách hàng</a></li>
+                                <li  @click="showBlock(5)"><a href="#">Tour đã đặt</a></li>
+                            
+                            
+                            </ul>
                         </li>
                         <li @click="showBlock(1)" >
-                        <label for="" class="four">
-                            <i class="fa-solid fa-hotel"></i>
-                            Quản lí khách sạn </label>
+                                <label for="" class="four">
+                                    <i class="fa-solid fa-hotel"></i>
+                                    Quản lí khách sạn </label>
                         </li>
                         <li >
-                        <label for="btn-4" class="five">
-                            <i class="fas fa-gift me-2" ></i>
-                            Quản lí tour 
-                        <span class="fas fa-caret-down"></span>
-                       </label>
+                            <label for="btn-4" class="five">
+                                <i class="fas fa-gift me-2" ></i>
+                                Quản lí tour 
+                            <span class="fas fa-caret-down"></span>
+                        </label>
                             <input type="checkbox" name="" id="btn-4">
                             <ul>
                                 <li @click="showBlock(2)"><a href="#" >Danh sách tour</a></li>
@@ -254,7 +256,7 @@
                         <div class="col-md-3">
                             <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                                 <div>
-                                    <h3 class="fs-2">1500</h3>
+                                    <h3 class="fs-2">250</h3>
                                     <p class="fs-5">Sales</p>
                                 </div>
                                 <i
@@ -289,25 +291,27 @@
                 <div class="list_hotels"  v-if="currentBlock == 1" >
                     <div class="heading">
                         <h3 class="fs-4 mb-3">Danh sách khách sạn</h3>
+                      
+                     
                          <router-link to="/addhotel">
                             <button class="btn btn-danger"><i class="fa-solid fa-folder-plus"></i> Tạo mới</button>
                         </router-link>
                     </div> 
                         <div class="list_item_product d-flex" id="product"  >
-                            <ListHotel :hotels="hotels" :refeshlist="getall" :getindexhotels="getindexhotels"   v-model:activeIndex1="activeIndex1">
+                            <ListHotel :hotels="hotels" :refeshlist="getall" :getindexhotels="getindexhotels"      v-model:activeIndex1="activeIndex1">
                             </ListHotel>
-                        <div class="card_product border border-light border-2 h-100 bg-light text-dark" style="padding: 10px;" v-if="getindexhotels">  
+                             <div class="card_product border border-light border-2 h-100 bg-light text-dark" style="padding: 10px;" v-if="getindexhotels">  
                              <h5>Chi tiết khách sạn</h5>
                             <Hotelcard :hotels="getindexhotels"></Hotelcard> 
                             <router-link
                             :to="{
                             name: 'edithotel',
                             params: { id: getindexhotels._id },
-                        }"
+                             }"
                             >
                                 <span class="badge bg-warning text-dark">
                         
-    
+     
                                 <i class="bi bi-pencil-square"></i> Chỉnh sửa</span>
                             </router-link>
                         </div>
@@ -318,9 +322,6 @@
                  <div class="tour"  v-else-if="currentBlock == 2" >
                     <div class="heading">
                           <h3 class="fs-4 mb-3">Danh sách tour</h3>
-                            <router-link to="/addproduct">
-                              <button class="btn btn-danger"><i class="fa-solid fa-folder-plus"></i> Tạo mới</button>
-                           </router-link>
                     </div>
                     <div class="list_item_product d-flex" id="product" >
                           
@@ -342,8 +343,6 @@
                             </router-link>
                          
                         </div>
-
-                       
                     </div>
                        
                 </div>
@@ -352,16 +351,15 @@
                         <AddProduct/>
 
                     </div>
-
-                
-            <div   style="width:100%"  v-else-if="currentBlock == 3" >
+            <div style="width:100%"  v-else-if="currentBlock == 3" >
     
                 <div class="list_users1 w-50" >
                     <div class="fs-4 mb-3">
                         <h4>Danh Sách Người dùng</h4>
                     </div>
                         <div class="list_item_user d-flex" id="user">
-                            <ListUser :users="users"  :refeshlist="getall" v-model:activeUser="activeUser"></ListUser>
+                            <ListUser :users="users"  :refeshlist="getall" v-model:activeUser="activeUser">
+                            </ListUser>
                                <div class="card_product border border-light border-2 h-100 bg-light text-dark" style="padding: 10px;" v-if="getindexuser">  
                                 <h5>Chi tiết người dùng</h5>
                                 <Usercard :users="getindexuser"></Usercard>
@@ -374,19 +372,13 @@
                 <div class="tour"  v-else-if="currentBlock == 5" >
                     <div class="heading">
                           <h3 class="fs-4 mb-3">Danh sách tour đã đặt</h3>
-                           
                     </div>
                         <div class="list_item_product d-flex" id="product" >
-                          
                             <ListOrder :orders="orders" :refeshlist="getall" :getindexorder="getindexorder" v-model:activeIndexOrder="activeIndexOrder">
                             </ListOrder>
-
-                    
                     </div>
                        
                 </div>
-               
-
                 <div class="tour-add" v-else-if="currentBlock == 4">
                 
                         <Addcreatepay class="addcreatepay"/>
@@ -409,11 +401,12 @@
                          <div class="card_product border border-light border-2 h-100 bg-light text-dark" style="padding: 10px;" v-if="getindexpay">  
                             <h5>Chi tiết tour</h5>
                             <Paycard :pays="getindexpay"></Paycard> 
+                        
                             <router-link
                             :to="{
                             name: 'editpay',
                             params: { id: getindexpay._id },
-                        }"
+                             }"
                             >
                                 <span class="badge bg-warning text-dark">
                         
@@ -425,8 +418,7 @@
                           
                        
                       </div>
-                      
-                      
+                    
                 </div> 
                 
     
@@ -467,6 +459,7 @@
         background: rgb(0, 28, 64);
     
     }
+    
     .tour-heading{
          margin: 5px 19px;
     }
@@ -483,9 +476,18 @@
         padding: 20px;
     }
     .heading{
-        padding-left:70px;
-        width:50%;
-        margin-bottom: 5px;
+        padding-left: 5px;
+        width:96%;
+        height: 40px;
+        margin-left: 20px;
+        margin-bottom: 15px;
+        border-left: 7px solid #FFD43B;
+        /* border-radius:6px; */
+     background: #eee; 
+        /* border-bottom: 1px solid #ddd; */
+        padding-bottom: 10px;
+        padding-top: 5px;
+        /* border-top: 1px solid #ddd; */
        
     }
     

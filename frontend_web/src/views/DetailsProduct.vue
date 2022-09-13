@@ -18,8 +18,7 @@
                      img:"",
                      price:"",
                      newprice:"",
-                    
-                    
+                
                  },
                  carts:[],
                  toasts:{
@@ -65,7 +64,7 @@
                 try{
                     
                     this.carts = await CartService.get(this.currentUser._id);
-            
+                 console.log(this.detailproduct.title);
                     this.cartitem.userId= this.currentUser._id;
                      this.carts.map((cartproduct)=>{
                              if(cartproduct.productId == this.cartitem.productId ){

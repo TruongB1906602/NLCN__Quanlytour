@@ -26,7 +26,7 @@
                     title:"Warning",
                     msg:"Tên đăng nhập hoặc tài khoản không đúng!",
                     type:"warn",
-                    duration:2000
+                    duration:1000
                  },
             }
         },

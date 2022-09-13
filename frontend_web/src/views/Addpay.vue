@@ -3,20 +3,24 @@
 <script>
   import toastjs from "../assets/js/toasts";
   import toastsVue from "../components/toasts.vue";
+  import PayService from "../services/Pay.service";
   import Cartshopdetails from "@/views/Cartshopdetails.vue";
   import HeaderShop from '@/components/HeaderShop.vue';
   import Paymentform1 from "../components/Paymentform1.vue";
   
-  import PayService from "@/services/Pay.service";
+  
   export default {
     data(){
+     
       return {
+    
            toasts:{
                 title:"Success",
                 msg:"Thêm sản phẩm thành công",
                 type:"success",
                 duration:2000
                 },
+                
       }
     },
     components: {
@@ -33,9 +37,10 @@
               try {
                   await PayService.create(data);
                   this.toastjs();
-                  // setTimeout(()=>{
-                  //   location.reload();
-                  // },2000);
+
+                   setTimeout(()=>{
+                     location.reload();
+                   },1000);
               }catch(error) {
                   console.log(error);
                       this.toasts.title = "Warning",
@@ -44,14 +49,16 @@
                       this.toasts.duration=2000
                       this.toastjs();
                   }
+                  console.log(this.currentUser._id);
             },  
             async getpay() {
               try {
                   await PayService.get(id);
+            
                   this.toastjs();
-                  // setTimeout(()=>{
-                  //   location.reload();
-                  // },2000);
+                   setTimeout(()=>{
+                     location.reload();
+                   },1000);
               }catch(error) {
                   console.log(error);
                       this.toasts.title = "Warning",
@@ -63,10 +70,13 @@
             },  
 
 
-
-
-
     },
+    computed:{
+            ...mapState(useAuthStore,{
+                currentUser: "user",
+            }),
+        },
+  
   };
   </script>
   <template>
@@ -84,12 +94,17 @@
     <div class="page">
       <div class="pays"> 
       
-        <Paymentform1
-                   :pay="{}"	
-                  @submit:pay="addpay"
-                  :resetAfterSubmit="false"
-                 
-        />
+        
+        
+                  <Paymentform1
+                            :pay="{}"	
+                            @submit:pay="addpay"
+                            :resetAfterSubmit="false"
+                          
+                  />
+            
+        
+ 
               
       </div>
      

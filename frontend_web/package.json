@@ -23,6 +23,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.1",
     "nodemon": "^2.0.19",
+    "pending-xhr-puppeteer": "^2.3.3",
     "sass": "^1.54.5",
     "vite": "^2.9.1"
   }

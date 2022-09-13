@@ -1,7 +1,9 @@
 <script>
 import ProductService from "../services/Product.service";
 import toastjs from "../assets/js/toasts";
+
     export default{
+      
         data(){
             return{
                 toasts:{
@@ -10,6 +12,7 @@ import toastjs from "../assets/js/toasts";
                     type:"",
                     duration:0
                  },
+                 title:"",
             }
         },   
         props:{
@@ -17,7 +20,10 @@ import toastjs from "../assets/js/toasts";
             refeshlist:Function,
             activeIndex: { type: Number, default: -1 },
         },
+       
 	emits: ["update:activeIndex"],
+  
+   
         methods:{
             toastjs,
             async delproduct(id){
@@ -41,73 +47,95 @@ import toastjs from "../assets/js/toasts";
             updateActiveIndex(index) {
 			this.$emit("update:activeIndex", index);
 		    },
+
+           
+        },
+        computed:{
+            filterProductsByName: function() {
+                return this.products.filter(product => !product.title.indexOf(this.title.charAt(0).toUpperCase(0)))
+       
+ 
+            },
         }
     }
 </script>
 <template>
+    <div >
+            <div class="form-search">
+                <form action="" class="form-inline">
+                    <h5 class="search"> <label for="">Tìm kiếm</label>  </h5>
+                    <input type="text" class="form-control" v-model="title">
+                  
+                </form>
+            </div>  
+
 
      <div class="container">
-     <div class=" row-cols-1">
-        <h4 class="heading" >Tên tour</h4>
-        <div class="title" v-for="product in products"
-			:key="product._id"
-          
-		>
+   
         
-			<span>{{product.title}}</span></div>
+    
+                <div class=" row-cols-1">
+                    <h4 class="heading" >Tên tour</h4>
+                    <div class="title"  v-for="product in filterProductsByName"
+                                        :key="product._id"
+                    >
+                    
+                            <span>{{product.title}}</span>
+                    </div>
+                    
+                </div>
+                <div class=" row-cols-1" >
+                    <h4 class="heading">Giá</h4>
+                    <div  class="price" v-for="product in filterProductsByName"
+                        :key="product._id"
+                    
+                    >
+                        <span>{{product.price}}</span></div>
+                    
+                    </div>
+                    
+                    <div class=" row-cols-1" >
+                    <h4 class="heading">Ngày đi</h4>
+                    <div  class="date" v-for="product in filterProductsByName"
+                        :key="product._id"
+                    
+                    >
+                        <span>{{product.date}}</span></div>
+                    
+                    </div>
+                    <div class=" row-cols-1" >
+                    <h4 class="heading">SL tour</h4>
+                    <div  class="sl" v-for="product in filterProductsByName"
+                        :key="product._id"
            
-        </div>
-      <div class=" row-cols-1" >
-          <h4 class="heading">Giá</h4>
-        <div  class="price" v-for="product in products"
-			:key="product._id"
-          
-		>
-			<span>{{product.price}}</span></div>
-           
-        </div>
-        
-         <div class=" row-cols-1" >
-         <h4 class="heading">Ngày đi</h4>
-        <div  class="date" v-for="product in products"
-			:key="product._id"
-           
-		>
-			<span>{{product.date}}</span></div>
-           
-        </div>
-         <div class=" row-cols-1" >
-         <h4 class="heading">SL tour</h4>
-        <div  class="sl" v-for="product in products"
-			:key="product._id"
-           
-		>
-			<span>{{product.sl}}</span></div>
-           
-        </div>
-         <div class=" row-cols-1" >
-         <h4 class="heading">Ảnh</h4>
-        <div  class="images" v-for="product in products"
-			:key="product._id"
-         
-		>
-			    <img :src=product.img[0] style="width: 110px; height:60px; margin: 0px 5px;" alt="">
-            </div>
-           
-        </div>
-          <div class=" row-cols-1" >
-        <h4 class="heading">Chức năng</h4>
-        <div  class="btn list-group-item product-item d-flex" v-for="(product, index) in products"
-        
-			:key="product._id"
-            @click="updateActiveIndex(index)"
-           
-		>
-		  <button class=" btn-outline-danger btn-sm" @click="delproduct(product._id)"><ion-icon name="close-circle-outline"></ion-icon></button>
-           <button class=" btn-outline-danger btn-sm" @click="updateActiveIndex(product._id)"><ion-icon name="create-outline"></ion-icon></button>
-           </div>
-        </div>
-</div>
+                        >
+                            <span>{{product.sl}}</span></div>
+                        
+                        </div>
+                        <div class=" row-cols-1" >
+                        <h4 class="heading">Ảnh</h4>
+                        <div  class="images" v-for="product in filterProductsByName"
+                            :key="product._id"
+                        
+                        >
+                                    <img :src=product.img[0] style="width: 110px; height:60px; margin: 0px 5px;" alt="">
+                                </div>
+                            
+                            </div>
+                            <div class=" row-cols-1" >
+                            <h4 class="heading">Chức năng</h4>
+                            <div  class="btn list-group-item product-item d-flex" v-for="(product, index) in filterProductsByName"
+                            
+                                :key="product._id"
+                                @click="updateActiveIndex(index)"
+                            
+                            >
+                                <button class=" btn-outline-danger btn-sm" @click="delproduct(product._id)"><ion-icon name="close-circle-outline"></ion-icon></button>
+                                <button class=" btn-outline-danger btn-sm" @click="updateActiveIndex(product._id)"><ion-icon name="create-outline"></ion-icon></button>
+                                </div>
+                                </div>
+                        </div>
+                        </div>
  </template>
 <style scoped>
   
@@ -116,48 +144,39 @@ import toastjs from "../assets/js/toasts";
         color: azure;
 
  }
-.col{
-    border: 1px solid  #dee2e6;
-    font-size: 14px;
-    
-}
+
+
 .btn button{
-   
- 
     font-size: 18px;
-   
      border: 1px solid #dee2e6;
      background:#FBE2C5;
      margin: 0 5px;
 }
 .btn{
-     font-weight: 500;
+    font-weight: 500;
     font-size: 12px;
     padding: 20px;
-     border: 1px solid #dee2e6;
-        background: white;
+    border: 1px solid #dee2e6;
+     background: white;
       
 }
 .sl{
     height:80px;
-     font-weight: 50
-     0;
+    font-weight: 500;
     font-size: 12px;
     padding: 20px;
-     border: 1px solid #dee2e6;
-        background: white;
+    border: 1px solid #dee2e6;
+    background: white;
       
 }
 .price{
      border: 1px solid #dee2e6;
     height: 80px;
     font-size: 14px;
-     width: 100px; 
+    width: 100px; 
     font-weight: 500;
     padding: 10px;
-       background: white;
-    
-
+    background: white;
 } 
 .heading{
     cursor: pointer;
@@ -185,10 +204,10 @@ import toastjs from "../assets/js/toasts";
      border: 1px solid #dee2e6;
     height: 80px;
     font-size: 14px;
-     font-weight: 500;
-     padding: 10px;
-     overflow: hidden;
-        background: white;
+    font-weight: 500;
+    padding: 10px;
+    overflow: hidden;
+    background: white;
     
 }
 .images{
@@ -198,11 +217,33 @@ import toastjs from "../assets/js/toasts";
     overflow: hidden;
     padding: 10px;
     width: 150px;
+    background: white; 
+}
+.form-search{
+    font-weight: 400;
+    
+    white-space: nowrap;
+    text-align: left;
     background: white;
-    
-    
-    
-    
+    color: black;
+    padding: 5px;
+    margin-right: 30px;
+    width: 300px;
+    float: right;
+    border-radius: 0.357rem;
+    border: 1px solid #ddd;
+   margin-bottom: 20px;
+}
+.form-inline input{
+    width: 70%;
+    margin-left: 10px;
+    height: 30px;
+    display: inline-block; background-color: #f1f1f1;
+}
+.search{
+    display: inline-block;
+    font-size: 15px;
+   
 }
 .row-cols-1{
     /* width: 10%; */
@@ -212,7 +253,7 @@ import toastjs from "../assets/js/toasts";
 }
 .container{
     display: flex;
-    margin-left: 50px;
+   
     max-width: 100%;
 }
 

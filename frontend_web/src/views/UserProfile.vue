@@ -35,6 +35,7 @@ export default {
 };
 </script>
 <template>
+<div>
 	<HeaderShop></HeaderShop>
 	<toastsVue></toastsVue>
 	<div style="display: flex;">
@@ -68,6 +69,7 @@ export default {
 	<div v-if="checkedit" style="display: flex;flex-direction: column;justify-content: center;">
 			<EditUser :user="currentUser"></EditUser>
 	</div>	
+</div>
 </div>
 </template>
 
